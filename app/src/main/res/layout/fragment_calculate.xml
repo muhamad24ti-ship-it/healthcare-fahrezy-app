@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollViewCalculate"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_kabut"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Form Card Input -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/card_surface"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Hitung BMI Anda"
+                    android:textColor="@color/text_ink_dark"
+                    android:textSize="18sp" />
+
+                <!-- Gender Selector Toggle -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Jenis Kelamin"
+                    android:textColor="@color/text_ink_dark"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    app:checkedButton="@id/btnGenderMale"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnGenderMale"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Pria"
+                        android:textColor="@color/primary_teal" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnGenderFemale"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Wanita"
+                        android:textColor="@color/primary_teal" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <!-- Usia Input -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Usia (Tahun)"
+                    android:textColor="@color/text_ink_dark"
+                    android:textSize="13sp" />
+
+                <EditText
+                    android:id="@+id/edtAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_field"
+                    android:fontFamily="@font/poppins_regular"
+                    android:hint="22"
+                    android:inputType="number"
+                    android:paddingHorizontal="16dp"
+                    android:textSize="14sp" />
+
+                <!-- Tinggi Badan Slider -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Tinggi Badan (cm)"
+                        android:textColor="@color/text_ink_dark"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeightValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/primary_teal"
+                        android:textSize="15sp"
+                        tools:text="170 cm" />
+                </LinearLayout>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:value="170"
+                    android:valueFrom="100"
+                    android:valueTo="220"
+                    app:thumbColor="@color/primary_teal"
+                    app:trackColorActive="@color/primary_teal"
+                    app:trackColorInactive="@color/surface_mint" />
+
+                <!-- Berat Badan Slider -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Berat Badan (kg)"
+                        android:textColor="@color/text_ink_dark"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvWeightValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/primary_teal"
+                        android:textSize="15sp"
+                        tools:text="65 kg" />
+                </LinearLayout>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:value="65"
+                    android:valueFrom="30"
+                    android:valueTo="150"
+                    app:thumbColor="@color/primary_teal"
+                    app:trackColorActive="@color/primary_teal"
+                    app:trackColorInactive="@color/surface_mint" />
+
+                <!-- Tombol Hitung BMI -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCalculate"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/primary_teal"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Hitung BMI"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:cornerRadius="26dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Result Section Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/card_surface"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Hasil Perhitungan BMI"
+                    android:textColor="@color/text_ink_dark"
+                    android:textSize="16sp" />
+
+                <com.example.mfahrezy_project_24tic.BmiGaugeView
+                    android:id="@+id/bmiGaugeResult"
+                    android:layout_width="240dp"
+                    android:layout_height="190dp"
+                    android:layout_marginTop="8dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/surface_mint"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="💡 Saran Untuk Anda"
+                            android:textColor="@color/text_ink_dark"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvAdvice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/text_ink_dark"
+                            android:textSize="13sp"
+                            tools:text="BMI Anda tergolong normal. Jaga terus pola hidup sehat, olahraga teratur, dan makanan bernutrisi seimbang!" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Seimbang Design System Colors -->
+    <color name="primary_teal">#087A75</color>
+    <color name="primary_teal_dark">#05524F</color>
+    <color name="text_ink_dark">#0A3E3E</color>
+    <color name="surface_mint">#CFEDE6</color>
+    <color name="background_kabut">#F4F9F8</color>
+    <color name="card_surface">#FFFFFF</color>
+
+    <!-- BMI Status Colors -->
+    <color name="bmi_underweight">#0288D1</color>
+    <color name="bmi_normal">#2E7D32</color>
+    <color name="bmi_overweight">#EF6C00</color>
+    <color name="bmi_obese">#C62828</color>
+
+    <!-- Neutral & Utility Colors -->
+    <color name="gray_text_secondary">#616161</color>
+    <color name="gray_border">#E0E0E0</color>
+    <color name="gray_input_bg">#F0F4F4</color>
+    <color name="logout_red">#D32F2F</color>
+</resources>

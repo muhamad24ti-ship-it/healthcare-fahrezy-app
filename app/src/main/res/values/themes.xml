@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MFahrezy_Project_24TIC" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/primary_teal</item>
+    </style>
+
+    <style name="Theme.MFahrezy_Project_24TIC" parent="Base.Theme.MFahrezy_Project_24TIC" />
+
+    <style name="ToolbarTitleStyle">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+</resources>
