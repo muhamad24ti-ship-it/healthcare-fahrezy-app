@@ -14,6 +14,7 @@ import java.util.Locale
 
 class CalculateFragment : Fragment() {
 
+    // [PERTEMUAN 4] ViewBinding: Deklarasi _binding untuk FragmentCalculate
     private var _binding: FragmentCalculateBinding? = null
     private val binding get() = _binding!!
     private lateinit var bmiPref: BmiPreferences
@@ -23,6 +24,7 @@ class CalculateFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // [PERTEMUAN 4] ViewBinding: Inisialisasi ViewBinding untuk FragmentCalculate
         _binding = FragmentCalculateBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -92,7 +94,7 @@ class CalculateFragment : Fragment() {
         binding.bmiGaugeResult.setBmiScore(bmiScore, status, animate = true)
         binding.tvAdvice.text = advice
 
-        // Save Record to SharedPreferences
+        // [PERTEMUAN 6] SharedPreferences: Menyimpan record hasil perhitungan BMI ke SharedPreferences (JSON Format)
         val dateFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
         val record = BmiRecord(
             dateString = dateFormat.format(Date()),
@@ -105,7 +107,7 @@ class CalculateFragment : Fragment() {
         )
         bmiPref.saveBmiRecord(record)
 
-        // Tampilkan Snackbar melayang TEPAT DI ATAS BottomNavigationView
+        // [PERTEMUAN 3] Snackbar: Menampilkan Snackbar melayang di atas BottomNavigationView saat berhasil hitung BMI
         val activityView = requireActivity().findViewById<View>(R.id.main) ?: binding.root
         val bottomNav = requireActivity().findViewById<View>(R.id.bottomNavigation)
         val snackbar = Snackbar.make(activityView, "Data berhasil dihitung & disimpan!", Snackbar.LENGTH_SHORT)

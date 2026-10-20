@@ -12,6 +12,7 @@ import java.util.Locale
 
 class ProfileFragment : Fragment() {
 
+    // [PERTEMUAN 4] ViewBinding: Deklarasi _binding untuk FragmentProfile
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var bmiPref: BmiPreferences
@@ -21,6 +22,7 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // [PERTEMUAN 4] ViewBinding: Inisialisasi ViewBinding untuk FragmentProfile
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,7 +37,7 @@ class ProfileFragment : Fragment() {
         binding.tvProfileEmail.text = String.format(Locale.US, "%s@seimbang.app", username.lowercase(Locale.US))
         binding.tvAvatarInitial.text = if (username.isNotEmpty()) username.substring(0, 1).uppercase(Locale.US) else "U"
 
-        // Logout AlertDialog logic (fitur existing)
+        // [PERTEMUAN 4] AlertDialog: Konfirmasi logout sebelum menghapus session
         binding.btnLogout.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Konfirmasi LogOut")
@@ -43,8 +45,10 @@ class ProfileFragment : Fragment() {
 
             builder.setPositiveButton("Ya") { dialog, _ ->
                 dialog.dismiss()
+                // [PERTEMUAN 6] SharedPreferences: Menghapus session login saat logout
                 bmiPref.clearSession()
 
+                // [PERTEMUAN 4] Intent: Pindah halaman dari Main/Profile ke LoginActivity
                 val intent = Intent(requireContext(), LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)

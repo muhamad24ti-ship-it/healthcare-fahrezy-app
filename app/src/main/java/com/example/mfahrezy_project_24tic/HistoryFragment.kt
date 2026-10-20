@@ -10,6 +10,7 @@ import com.example.mfahrezy_project_24tic.databinding.FragmentHistoryBinding
 
 class HistoryFragment : Fragment() {
 
+    // [PERTEMUAN 4] ViewBinding: Deklarasi _binding untuk FragmentHistory
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
     private lateinit var bmiPref: BmiPreferences
@@ -19,6 +20,7 @@ class HistoryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // [PERTEMUAN 4] ViewBinding: Inisialisasi ViewBinding untuk FragmentHistory
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,6 +38,7 @@ class HistoryFragment : Fragment() {
     }
 
     private fun loadHistoryData() {
+        // [PERTEMUAN 6] SharedPreferences: Membaca daftar riwayat BMI dari JSON
         val historyList = bmiPref.getBmiHistory()
         if (historyList.isEmpty()) {
             binding.tvEmptyHistory.visibility = View.VISIBLE
@@ -44,10 +47,12 @@ class HistoryFragment : Fragment() {
             binding.tvEmptyHistory.visibility = View.GONE
             binding.lvHistory.visibility = View.VISIBLE
             
+            // [PERTEMUAN 7] ListView & Custom Adapter: Inisialisasi ListView dengan BmiHistoryListViewAdapter
             val adapter = BmiHistoryListViewAdapter(requireContext(), historyList)
             binding.lvHistory.adapter = adapter
             setListViewHeightBasedOnChildren(binding.lvHistory)
             
+            // CATATAN: Ini adalah custom drawing untuk grafik garis tren BMI.
             binding.bmiChartView.setBmiData(historyList)
         }
     }

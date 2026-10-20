@@ -73,6 +73,7 @@ class BmiGaugeView @JvmOverloads constructor(
         }
     }
 
+    // CATATAN: Ini adalah Custom View menggunakan Canvas untuk menggambar jarum BMI secara manual menggunakan canvas.drawArc dan canvas.drawLine.
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 

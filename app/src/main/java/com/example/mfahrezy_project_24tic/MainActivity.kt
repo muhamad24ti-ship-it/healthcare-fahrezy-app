@@ -10,11 +10,13 @@ import com.example.mfahrezy_project_24tic.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    // [PERTEMUAN 4] ViewBinding: Deklarasi variabel binding untuk MainActivity
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // [PERTEMUAN 4] ViewBinding: Inisialisasi ViewBinding untuk MainActivity
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Set Toolbar Initial
+        // [PERTEMUAN 6] Toolbar: Inisialisasi dan penyetelan judul Toolbar utama
         binding.toolbarMain.title = "Seimbang"
 
         // Default Fragment: HomeFragment
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             loadFragment(HomeFragment(), "Seimbang - Beranda")
         }
 
-        // Listener Bottom Navigation 4 Menu
+        // [PERTEMUAN 7] BottomNavigationView: Listener navigasi 4 menu tab (Beranda, Hitung, Riwayat, Profil)
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             val (fragment, title) = when (item.itemId) {
                 R.id.nav_home -> Pair(HomeFragment(), "Seimbang - Beranda")
@@ -47,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadFragment(fragment: Fragment, title: String) {
+        // [PERTEMUAN 6] Toolbar: Mengubah judul Toolbar secara dinamis saat berpindah tab
         binding.toolbarMain.title = title
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)

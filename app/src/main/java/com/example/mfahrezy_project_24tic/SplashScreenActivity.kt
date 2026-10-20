@@ -14,6 +14,7 @@ import com.example.mfahrezy_project_24tic.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+// [PERTEMUAN 6] Splash Screen Activity
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +27,13 @@ class SplashScreenActivity : AppCompatActivity() {
             insets
         }
 
+        // [PERTEMUAN 6] SharedPreferences: Inisialisasi helper session
         val bmiPref = BmiPreferences(this)
 
         lifecycleScope.launch {
             delay(2000)
 
+            // [PERTEMUAN 6] SharedPreferences: Memeriksa session isLogin (jika true ke Main, jika false ke Onboarding/Login)
             if (bmiPref.isLogin) {
                 val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
                 startActivity(intent)

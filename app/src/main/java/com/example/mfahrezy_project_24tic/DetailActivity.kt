@@ -9,11 +9,13 @@ import com.example.mfahrezy_project_24tic.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
+    // [PERTEMUAN 4] ViewBinding: Deklarasi _binding untuk DetailActivity
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // [PERTEMUAN 4] ViewBinding: Inisialisasi ViewBinding untuk DetailActivity
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -23,6 +25,7 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
 
+        // [PERTEMUAN 6] Toolbar: Listener tombol panah kembali pada Toolbar Detail
         binding.toolbarDetail.setNavigationOnClickListener {
             finish()
         }

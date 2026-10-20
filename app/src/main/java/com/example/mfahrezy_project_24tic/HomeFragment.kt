@@ -10,6 +10,7 @@ import com.example.mfahrezy_project_24tic.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
+    // [PERTEMUAN 4] ViewBinding: Deklarasi _binding untuk FragmentHome
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var bmiPref: BmiPreferences
@@ -19,6 +20,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // [PERTEMUAN 4] ViewBinding: Inisialisasi ViewBinding untuk FragmentHome
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -26,6 +28,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // [PERTEMUAN 6] SharedPreferences: Membaca nama username terdaftar untuk greeting
         bmiPref = BmiPreferences(requireContext())
         binding.tvUsername.text = bmiPref.username
 
@@ -38,9 +41,15 @@ class HomeFragment : Fragment() {
             binding.bmiGaugeHome.setBmiScore(22.8f, "Normal", animate = true)
         }
 
-        // Navigasi ke DetailActivity (fitur existing)
+        // [PERTEMUAN 4] Intent: Navigasi dari HomeFragment ke DetailActivity
         binding.btnKeDetail.setOnClickListener {
             val intent = Intent(requireContext(), DetailActivity::class.java)
+            startActivity(intent)
+        }
+
+        // CATATAN: Ini adalah WebView untuk berpindah ke WebViewActivity (Artikel WHO)
+        binding.btnWebArticle.setOnClickListener {
+            val intent = Intent(requireContext(), WebViewActivity::class.java)
             startActivity(intent)
         }
     }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- [PERTEMUAN 3 & 4] CoordinatorLayout sebagai root layout untuk mendukung Snackbar -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,6 +14,7 @@
         android:layout_height="match_parent"
         android:padding="24dp">
 
+        <!-- [PERTEMUAN 3 & 4] CardView: Kontainer berbentuk kartu untuk tempat form login -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardLogin"
             android:layout_width="match_parent"
@@ -31,6 +33,7 @@
                 android:orientation="vertical"
                 android:padding="24dp">
 
+                <!-- [PERTEMUAN 3] Gambar logo user -->
                 <ImageView
                     android:id="@+id/imgLogo"
                     android:layout_width="80dp"
@@ -38,6 +41,7 @@
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/user" />
 
+                <!-- [PERTEMUAN 3 & 6] Font Poppins Bold & Warna Seimbang (Text Ink Dark) -->
                 <TextView
                     android:id="@+id/tvHeader"
                     android:layout_width="wrap_content"
@@ -102,6 +106,7 @@
                     android:paddingHorizontal="16dp"
                     android:textSize="14sp" />
 
+                <!-- [PERTEMUAN 3 & 6] Tombol Login dengan warna Primary Teal (#087A75) -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"

@@ -10,11 +10,13 @@ import com.example.mfahrezy_project_24tic.databinding.ActivityOnboardingBinding
 
 class OnboardingActivity : AppCompatActivity() {
 
+    // [PERTEMUAN 4] ViewBinding: Deklarasi binding untuk OnboardingActivity
     private lateinit var binding: ActivityOnboardingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        // [PERTEMUAN 4] ViewBinding: Inisialisasi ViewBinding untuk OnboardingActivity
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -24,13 +26,15 @@ class OnboardingActivity : AppCompatActivity() {
             insets
         }
 
-        // Set skor gauge default untuk demo onboarding
+        // CATATAN: Ini adalah Custom View menggunakan Canvas untuk menggambar jarum BMI secara manual
         binding.bmiGaugeView.setBmiScore(22.8f, "Normal", animate = true)
 
+        // [PERTEMUAN 4] Intent: Navigasi dari OnboardingActivity ke LoginActivity
         binding.btnStart.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
+        // [PERTEMUAN 4] Intent: Navigasi dari OnboardingActivity ke LoginActivity
         binding.tvLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
