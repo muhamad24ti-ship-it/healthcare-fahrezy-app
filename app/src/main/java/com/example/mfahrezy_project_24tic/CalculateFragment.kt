@@ -6,8 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.mfahrezy_project_24tic.data.AppDatabase
+import com.example.mfahrezy_project_24tic.data.entity.BmiRecordEntity
 import com.example.mfahrezy_project_24tic.databinding.FragmentCalculateBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -94,10 +99,12 @@ class CalculateFragment : Fragment() {
         binding.bmiGaugeResult.setBmiScore(bmiScore, status, animate = true)
         binding.tvAdvice.text = advice
 
-        // [PERTEMUAN 6] SharedPreferences: Menyimpan record hasil perhitungan BMI ke SharedPreferences (JSON Format)
         val dateFormat = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
+        val dateStr = dateFormat.format(Date())
+
+        // 1. Simpan ke SharedPreferences (kompatibilitas lokal)
         val record = BmiRecord(
-            dateString = dateFormat.format(Date()),
+            dateString = dateStr,
             bmiScore = bmiScore,
             status = status,
             weightKg = weightKg,
@@ -106,6 +113,21 @@ class CalculateFragment : Fragment() {
             gender = gender
         )
         bmiPref.saveBmiRecord(record)
+
+        // 2. Simpan ke Room Database menggunakan Coroutine (lifecycleScope)
+        val recordEntity = BmiRecordEntity(
+            weight = weightKg.toDouble(),
+            height = heightCm.toDouble(),
+            bmiScore = bmiScore.toDouble(),
+            bmiCategory = status,
+            timestamp = System.currentTimeMillis(),
+            dateString = dateStr,
+            ageYears = ageInput,
+            gender = gender
+        )
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            AppDatabase.getInstance(requireContext()).bmiRecordDao().insert(recordEntity)
+        }
 
         // [PERTEMUAN 3] Snackbar: Menampilkan Snackbar melayang di atas BottomNavigationView saat berhasil hitung BMI
         val activityView = requireActivity().findViewById<View>(R.id.main) ?: binding.root

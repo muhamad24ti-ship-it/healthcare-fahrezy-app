@@ -8,9 +8,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.mfahrezy_project_24tic.BmiPreferences
+import com.example.mfahrezy_project_24tic.LoginActivity
 import com.example.mfahrezy_project_24tic.MainActivity
-import com.example.mfahrezy_project_24tic.OnboardingActivity
 import com.example.mfahrezy_project_24tic.R
+import com.example.mfahrezy_project_24tic.tutorial.TutorialActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -33,12 +34,15 @@ class SplashScreenActivity : AppCompatActivity() {
         lifecycleScope.launch {
             delay(2000)
 
-            // [PERTEMUAN 6] SharedPreferences: Memeriksa session isLogin (jika true ke Main, jika false ke Onboarding/Login)
+            // Flow: Splash -> (jika isLogin true -> Main), (jika tutorial pernah dibuka -> Login), (jika belum -> Tutorial)
             if (bmiPref.isLogin) {
                 val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
                 startActivity(intent)
+            } else if (bmiPref.isTutorialSeen) {
+                val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
+                startActivity(intent)
             } else {
-                val intent = Intent(this@SplashScreenActivity, OnboardingActivity::class.java)
+                val intent = Intent(this@SplashScreenActivity, TutorialActivity::class.java)
                 startActivity(intent)
             }
             finish()

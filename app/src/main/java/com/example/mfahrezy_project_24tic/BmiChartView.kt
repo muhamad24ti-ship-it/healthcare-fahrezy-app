@@ -8,6 +8,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.example.mfahrezy_project_24tic.data.entity.BmiRecordEntity
 import java.util.Locale
 
 class BmiChartView @JvmOverloads constructor(
@@ -54,6 +55,13 @@ class BmiChartView @JvmOverloads constructor(
     fun setBmiData(records: List<BmiRecord>) {
         if (records.isNotEmpty()) {
             bmiData = records.take(6).map { it.bmiScore }.reversed()
+        }
+        invalidate()
+    }
+
+    fun setBmiDataFromEntity(records: List<BmiRecordEntity>) {
+        if (records.isNotEmpty()) {
+            bmiData = records.take(6).map { it.bmiScore.toFloat() }.reversed()
         }
         invalidate()
     }

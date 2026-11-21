@@ -24,4 +24,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "MFahrezy_Project_24TIC"
 include(":app")
- 

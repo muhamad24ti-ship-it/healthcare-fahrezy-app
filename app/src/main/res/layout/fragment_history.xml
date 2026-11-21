@@ -94,15 +94,54 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Section List Riwayat dengan ListView -->
+        <!-- Section List Riwayat dengan RecyclerView (Room Database) -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Catatan Riwayat Terakhir (ListView)"
+            android:text="Catatan Riwayat Terakhir (Room Database)"
             android:textColor="@color/text_ink_dark"
             android:textSize="16sp" />
+
+        <!-- Filter ChipGroup -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSemua"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Semua" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipKurus"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kurus" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNormal"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Normal" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipGemuk"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gemuk" />
+        </com.google.android.material.chip.ChipGroup>
 
         <TextView
             android:id="@+id/tvEmptyHistory"
@@ -116,13 +155,12 @@
             android:textSize="14sp"
             android:visibility="gone" />
 
-        <ListView
-            android:id="@+id/lvHistory"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:divider="@null"
-            android:dividerHeight="0dp"
+            android:nestedScrollingEnabled="false"
             tools:listitem="@layout/item_bmi_history" />
 
     </LinearLayout>

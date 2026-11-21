@@ -26,6 +26,12 @@
         </activity>
 
         <activity
+            android:name=".tenth.TenthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tutorial.TutorialActivity"
+            android:exported="false" />
+        <activity
             android:name=".OnboardingActivity"
             android:exported="false" />
         <activity

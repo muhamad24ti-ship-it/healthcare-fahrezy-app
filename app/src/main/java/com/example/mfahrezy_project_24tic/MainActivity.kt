@@ -1,8 +1,13 @@
 package com.example.mfahrezy_project_24tic
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -26,8 +31,19 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // [PERTEMUAN 6] Toolbar: Inisialisasi dan penyetelan judul Toolbar utama
+        // [PERTEMUAN 6] Toolbar: Inisialisasi Toolbar utama & menu icon garis 3 (hamburger)
         binding.toolbarMain.title = "Seimbang"
+        binding.toolbarMain.inflateMenu(R.menu.top_app_bar_menu)
+
+        binding.toolbarMain.setOnMenuItemClickListener { menuItem ->
+            if (menuItem.itemId == R.id.action_hamburger) {
+                val anchorView = findViewById<View>(R.id.action_hamburger) ?: binding.toolbarMain
+                showHamburgerPopupMenu(anchorView)
+                true
+            } else {
+                false
+            }
+        }
 
         // Default Fragment: HomeFragment
         if (savedInstanceState == null) {
@@ -48,9 +64,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showHamburgerPopupMenu(anchorView: View) {
+        val popupMenu = PopupMenu(this, anchorView)
+        popupMenu.menu.add("Detail Projek")
+        popupMenu.menu.add("Artikel Sehat")
+
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.title) {
+                "Detail Projek" -> {
+                    // [PERTEMUAN 4] Intent: Navigasi dari Menu Toolbar ke DetailActivity
+                    startActivity(Intent(this, DetailActivity::class.java))
+                    true
+                }
+                "Artikel Sehat" -> {
+                    // CATATAN: Intent ke WebViewActivity untuk artikel kesehatan
+                    startActivity(Intent(this, WebViewActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+        popupMenu.show()
+    }
+
     private fun loadFragment(fragment: Fragment, title: String) {
         // [PERTEMUAN 6] Toolbar: Mengubah judul Toolbar secara dinamis saat berpindah tab
         binding.toolbarMain.title = title
+
+        if (fragment is HomeFragment) {
+            binding.toolbarMain.setBackgroundColor(Color.TRANSPARENT)
+            binding.appBarLayout.elevation = 0f
+        } else {
+            binding.toolbarMain.setBackgroundColor(ContextCompat.getColor(this, R.color.primary_teal))
+            binding.appBarLayout.elevation = 4f
+        }
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()

@@ -15,11 +15,16 @@ class BmiPreferences(context: Context) {
         private const val KEY_USERNAME = "username"
         private const val KEY_GENDER = "gender"
         private const val KEY_BMI_HISTORY = "bmi_history"
+        private const val KEY_TUTORIAL_SEEN = "tutorial_seen"
     }
 
     var isLogin: Boolean
         get() = pref.getBoolean(KEY_IS_LOGIN, false)
         set(value) = pref.edit().putBoolean(KEY_IS_LOGIN, value).apply()
+
+    var isTutorialSeen: Boolean
+        get() = pref.getBoolean(KEY_TUTORIAL_SEEN, false)
+        set(value) = pref.edit().putBoolean(KEY_TUTORIAL_SEEN, value).apply()
 
     var username: String
         get() = pref.getString(KEY_USERNAME, "User") ?: "User"
